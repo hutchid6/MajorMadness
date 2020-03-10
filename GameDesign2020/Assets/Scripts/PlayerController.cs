@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     Animator playerAnim;
     float speed = 0.25f;
     float interactionRadius = 2.0f;
-    bool playerEnabled = true;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -23,68 +22,56 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (playerEnabled)
+        if(Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
         {
-            if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
-            {
-                playerT.Translate(new Vector3(1, 1, 0) * speed);
-            }
-            else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
-            {
-                playerT.Translate(new Vector3(-1, 1, 0) * speed);
-            }
-            else if (Input.GetKey("s") && Input.GetKey("a"))
-            {
-                playerT.Translate(new Vector3(-1, -1, 0) * speed);
-            }
-            else if (Input.GetKey("s") && Input.GetKey("d"))
-            {
-                playerT.Translate(new Vector3(1, -1, 0) * speed);
-            }
-            else if (Input.GetKey("w"))
-            {
-                playerT.Translate(new Vector3(0, 1, 0) * speed);
-            }
-            else if (Input.GetKey("d"))
-            {
-                playerT.Translate(new Vector3(1, 0, 0) * speed);
-                playerAnim.Play("playerWalkRight");
-            }
-            else if (Input.GetKey("s"))
-            {
-                playerT.Translate(new Vector3(0, -1, 0) * speed);
-            }
-            else if (Input.GetKey("a"))
-            {
-                playerT.Translate(new Vector3(-1, 0, 0) * speed);
-            }
-            else
-            {
-                playerAnim.Play("playerIdle");
-            }
+            playerT.Translate(new Vector3(1, 1, 0) * speed);
+        }
+        else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
+        {
+            playerT.Translate(new Vector3(-1, 1, 0) * speed);
+        }
+        else if (Input.GetKey("s") && Input.GetKey("a"))
+        {
+            playerT.Translate(new Vector3(-1, -1, 0) * speed);
+        }
+        else if (Input.GetKey("s") && Input.GetKey("d"))
+        {
+            playerT.Translate(new Vector3(1, -1, 0) * speed);
+        }
+        else if(Input.GetKey("w"))
+        {
+            playerT.Translate(new Vector3(0, 1, 0) * speed);
+        }
+        else if (Input.GetKey("d"))
+        {
+            playerT.Translate(new Vector3(1, 0, 0) * speed);
+            playerAnim.Play("playerWalkRight");
+        }
+        else if (Input.GetKey("s"))
+        {
+            playerT.Translate(new Vector3(0, -1, 0) * speed);
+        }
+        else if (Input.GetKey("a"))
+        {
+            playerT.Translate(new Vector3(-1, 0, 0) * speed);
+        }
+        else
+        {
+            playerAnim.Play("playerIdle");
         }
 
-        /*if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             CheckForNearbyNPC();
-        }*/
+        }
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && FindObjectOfType<DialogueRunner>().isDialogueRunning != true)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             CheckForNearbyNPC();
         }
-        if(FindObjectOfType<DialogueRunner>().isDialogueRunning)
-        {
-            playerEnabled = false;
-        }
-        else
-        {
-            playerEnabled = true;
-        }
-
     }
 
     public void CheckForNearbyNPC()
