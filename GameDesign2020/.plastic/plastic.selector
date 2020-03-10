@@ -1,0 +1,4 @@
+repository "MajorMadness"
+  path "/"
+    br "/main"
+    co "/main"
