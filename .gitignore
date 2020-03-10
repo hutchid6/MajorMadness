@@ -35,5 +35,3 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
-GameDesign2020/Assets/Cinemachine/Base/Editor/Editors/CinemachineBlendListCameraEditor.cs.meta
-GameDesign2020/Assets/Scenes/SampleScene.unity
