@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
     float speed = 0.25f;
     float interactionRadius = 2.0f;
     bool playerEnabled = true;
-    int health = 6;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -65,6 +64,10 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        /*if (Input.GetKeyDown(KeyCode.Space))
+        {
+            CheckForNearbyNPC();
+        }*/
     }
 
     void Update()
@@ -96,15 +99,5 @@ public class PlayerController : MonoBehaviour
             // Kick off the dialogue at this node.
             FindObjectOfType<DialogueRunner>().StartDialogue(target.talkToNode);
         }
-    }
-
-    public void LoseHeart()
-    {
-        health--;
-    }
-
-    public void LoseHalfHeart()
-    {
-        health -= 2;
     }
 }
