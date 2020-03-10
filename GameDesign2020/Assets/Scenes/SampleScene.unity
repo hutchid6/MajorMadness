@@ -516,11 +516,6 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
---- !u!1 &690452157
-=======
 --- !u!1 &610878155
 >>>>>>> Josh-Branch
 GameObject:
@@ -537,11 +532,6 @@ GameObject:
   - component: {fileID: 690452158}
   m_Layer: 0
   m_Name: TestEnemy
-=======
-  - component: {fileID: 610878157}
-  - component: {fileID: 610878156}
-  m_Layer: 0
-  m_Name: CM vcam1
 >>>>>>> Josh-Branch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -550,8 +540,6 @@ GameObject:
   m_IsActive: 1
 <<<<<<< HEAD
 --- !u!114 &690452158
-=======
---- !u!114 &610878156
 >>>>>>> Josh-Branch
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -644,28 +632,6 @@ SpriteRenderer:
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &690452161
-=======
-  m_GameObject: {fileID: 610878155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
-  m_ExcludedPropertiesInInspector:
-  - m_Script
-  m_LockStageInInspector:
-  m_StreamingVersion: 20170927
-  m_Priority: 10
-  m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 71121697}
-  m_Lens:
-    FieldOfView: 40
-    OrthographicSize: 10
-    NearClipPlane: 0.1
-    FarClipPlane: 5000
-    Dutch: 0
-  m_ComponentOwner: {fileID: 454075518}
---- !u!4 &610878157
 >>>>>>> Josh-Branch
 Transform:
   m_ObjectHideFlags: 0
@@ -678,24 +644,10 @@ Transform:
   m_LocalPosition: {x: -8.02, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-=======
-  m_GameObject: {fileID: 610878155}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.07000143, y: -0.07000048, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 454075518}
 >>>>>>> Josh-Branch
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-=======
->>>>>>> parent of 9585aaa... Started Adding Test Enemy
-=======
->>>>>>> parent of 9585aaa... Started Adding Test Enemy
-=======
->>>>>>> parent of 9585aaa... Started Adding Test Enemy
-=======
 >>>>>>> parent of 9585aaa... Started Adding Test Enemy
 --- !u!1 &698878784
 GameObject:
