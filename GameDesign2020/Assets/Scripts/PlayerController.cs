@@ -12,6 +12,10 @@ public class PlayerController : MonoBehaviour
     Animator playerAnim;
     float speed = 0.25f;
     float interactionRadius = 2.0f;
+<<<<<<< HEAD
+=======
+    bool playerEnabled = true;
+>>>>>>> parent of 9585aaa... Started Adding Test Enemy
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -26,7 +30,20 @@ public class PlayerController : MonoBehaviour
         {
             playerT.Translate(new Vector3(1, 1, 0) * speed);
         }
+<<<<<<< HEAD
         else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
+=======
+
+        /*if (Input.GetKeyDown(KeyCode.Space))
+        {
+            CheckForNearbyNPC();
+        }*/
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && FindObjectOfType<DialogueRunner>().isDialogueRunning != true)
+>>>>>>> parent of 9585aaa... Started Adding Test Enemy
         {
             playerT.Translate(new Vector3(-1, 1, 0) * speed);
         }
