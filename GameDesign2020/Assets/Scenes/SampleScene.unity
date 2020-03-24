@@ -215,6 +215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 71121697}
+  - component: {fileID: 71121701}
   - component: {fileID: 71121696}
   - component: {fileID: 71121695}
   - component: {fileID: 71121694}
@@ -222,7 +223,7 @@ GameObject:
   - component: {fileID: 71121699}
   - component: {fileID: 71121698}
   - component: {fileID: 71121700}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -407,6 +408,22 @@ MonoBehaviour:
   characterName: 
   talkToNode: 
   scriptToLoad: {fileID: 0}
+--- !u!114 &71121701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71121692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe2780756c0686c489ff4628dc9ffaa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  optionalcooldown: 0
+  projectile: {fileID: 2987801415660694825, guid: 3314a19eb7afd1140b981d550e8d094d,
+    type: 3}
+  velocity1: 50
 --- !u!1 &454075517
 GameObject:
   m_ObjectHideFlags: 3
