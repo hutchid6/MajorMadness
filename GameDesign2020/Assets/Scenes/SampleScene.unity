@@ -372,7 +372,14 @@ Animation:
   - {fileID: 7400000, guid: 05dd43665b6d1a846a23578be7760a3c, type: 2}
   - {fileID: 7400000, guid: 146f252e42ef6b247b8b9af194a0a002, type: 2}
   - {fileID: 7400000, guid: b87c8a9f3df33f247ae1f5b1d4be179d, type: 2}
-  - {fileID: 7400000, guid: 05dd43665b6d1a846a23578be7760a3c, type: 2}
+  - {fileID: 7400000, guid: f4421ed604601724b88922f24e62b256, type: 2}
+  - {fileID: 7400000, guid: 562e49915049de941ac6e5db2c00bce2, type: 2}
+  - {fileID: 7400000, guid: 9321473b98b57ca4e8f8c3f5cbba85f5, type: 2}
+  - {fileID: 7400000, guid: c340b7f208254b448b738daff15b530f, type: 2}
+  - {fileID: 7400000, guid: cf243a7d3311ae145ba75b8941f565c3, type: 2}
+  - {fileID: 7400000, guid: 77ab2646e0448804a87dd450ff2e511d, type: 2}
+  - {fileID: 7400000, guid: 0e8a47a02bc94b343be1bc7770e08f0b, type: 2}
+  - {fileID: 7400000, guid: 2d7592afba78ebc4eb1771026279b955, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -841,7 +848,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.31159967}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -852,7 +859,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4, y: 4}
+  m_Size: {x: 4, y: 3.3768005}
   m_EdgeRadius: 0
 --- !u!1 &891795890
 GameObject:
