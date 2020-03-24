@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     Transform playerT;
     Animator playerAnim;
-    float speed = 0.25f;
+    SpriteRenderer playerSprite;
+    float speed = 0.15f;
     float interactionRadius = 2.0f;
     bool playerEnabled = true;
     void Start()
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerT = GetComponent<Transform>();
         playerAnim = GetComponent<Animator>();
+        playerSprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -27,40 +29,45 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKey("w") && Input.GetKey("a"))
             {
-                playerT.Translate(new Vector3(-1, 1, 0) * speed);
+                playerT.Translate(new Vector3(-0.75f, 0.75f, 0) * speed);
             }
             else if(Input.GetKey("w") && Input.GetKey("d"))
             {
-                playerT.Translate(new Vector3(1, 1, 0) * speed);
+                playerT.Translate(new Vector3(0.75f, 0.75f, 0) * speed);
             }
             else if (Input.GetKey("s") && Input.GetKey("a"))
             {
-                playerT.Translate(new Vector3(-1, -1, 0) * speed);
+                playerT.Translate(new Vector3(-0.75f, -0.75f, 0) * speed);
             }
             else if (Input.GetKey("s") && Input.GetKey("d"))
             {
-                playerT.Translate(new Vector3(1, -1, 0) * speed);
+                playerT.Translate(new Vector3(0.75f, -0.75f, 0) * speed);
             }
             else if (Input.GetKey("w"))
             {
                 playerT.Translate(new Vector3(0, 1, 0) * speed);
+                playerAnim.Play("tagUp");
             }
             else if (Input.GetKey("d"))
             {
                 playerT.Translate(new Vector3(1, 0, 0) * speed);
-                playerAnim.Play("playerWalkRight");
+                playerSprite.flipX = true;
+                playerAnim.Play("tagLeft");
             }
             else if (Input.GetKey("s"))
             {
                 playerT.Translate(new Vector3(0, -1, 0) * speed);
+                playerAnim.Play("tagDown");
             }
             else if (Input.GetKey("a"))
             {
                 playerT.Translate(new Vector3(-1, 0, 0) * speed);
+                playerSprite.flipX = false;
+                playerAnim.Play("tagLeft");
             }
             else
             {
-                playerAnim.Play("playerIdle");
+                playerAnim.Play("tagIdle");
             }
         }
     }
@@ -71,6 +78,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && FindObjectOfType<DialogueRunner>().isDialogueRunning != true)
         {
             playerEnabled = false;
+            playerAnim.Play("tagIdle");
             CheckForNearbyNPC();
         }
         if(FindObjectOfType<DialogueRunner>().isDialogueRunning != true)
