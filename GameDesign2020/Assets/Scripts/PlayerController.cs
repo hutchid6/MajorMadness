@@ -47,23 +47,25 @@ public class PlayerController : MonoBehaviour
         {
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             direction = (mousePosition - transform.position).normalized;
-            if(direction.y > 0 && direction.x > -0.4f && direction.x < 0.4)
+            if(direction.y > 0 && direction.x > -0.5f && direction.x < 0.5)
             {
                 tagDirection = PlayerDirection.up;
             }
-            else if(direction.y < 0 && direction.x > -0.4f && direction.x < 0.4)
+            else if(direction.y < 0 && direction.x > -0.5f && direction.x < 0.5)
             {
                 tagDirection = PlayerDirection.down;
             }
-            else if(direction.x < 0 && direction.y > -0.4 && direction.y < 0.4)
+
+            if(direction.x < 0 && direction.y >= -0.2 && direction.y <= 0.2)
             {
                 tagDirection = PlayerDirection.left;
             }
-            else if(direction.x > 0 && direction.y > -0.4 && direction.y < 0.4)
+            else if(direction.x > 0 && direction.y >= -0.2 && direction.y <= 0.2)
             {
                 tagDirection = PlayerDirection.right;
             }
             Debug.Log(tagDirection);
+            Debug.Log(direction);
 
             if (Input.GetKey("w") && Input.GetKey("a"))
             {
