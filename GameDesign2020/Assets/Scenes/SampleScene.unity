@@ -453,6 +453,7 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 256
+  sword: {fileID: 410864287}
 --- !u!1 &410864287
 GameObject:
   m_ObjectHideFlags: 0
