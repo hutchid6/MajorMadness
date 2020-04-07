@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     float speed = 0.15f;
     float interactionRadius = 2.0f;
     public bool playerEnabled = true;
+    Vector3 mousePosition;
+    Vector3 direction;
+    bool playerMoving = false;
 
     public enum PlayerDirection
     {
@@ -33,6 +36,8 @@ public class PlayerController : MonoBehaviour
         playerT = GetComponent<Transform>();
         playerAnim = GetComponent<Animator>();
         playerSprite = GetComponent<SpriteRenderer>();
+
+        tagDirection = PlayerDirection.up;
     }
 
     // Update is called once per frame
@@ -40,51 +45,91 @@ public class PlayerController : MonoBehaviour
     {
         if (playerEnabled)
         {
+            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            direction = (mousePosition - transform.position).normalized;
+            if(direction.y > 0 && direction.x > -0.4f && direction.x < 0.4)
+            {
+                tagDirection = PlayerDirection.up;
+            }
+            else if(direction.y < 0 && direction.x > -0.4f && direction.x < 0.4)
+            {
+                tagDirection = PlayerDirection.down;
+            }
+            else if(direction.x < 0 && direction.y > -0.4 && direction.y < 0.4)
+            {
+                tagDirection = PlayerDirection.left;
+            }
+            else if(direction.x > 0 && direction.y > -0.4 && direction.y < 0.4)
+            {
+                tagDirection = PlayerDirection.right;
+            }
+            Debug.Log(tagDirection);
+
             if (Input.GetKey("w") && Input.GetKey("a"))
             {
                 playerT.Translate(new Vector3(-0.75f, 0.75f, 0) * speed);
-                tagDirection = PlayerDirection.upLeft;
+                playerMoving = true;
             }
             else if(Input.GetKey("w") && Input.GetKey("d"))
             {
                 playerT.Translate(new Vector3(0.75f, 0.75f, 0) * speed);
-                tagDirection = PlayerDirection.upRight;
+                playerMoving = true;
             }
             else if (Input.GetKey("s") && Input.GetKey("a"))
             {
                 playerT.Translate(new Vector3(-0.75f, -0.75f, 0) * speed);
-                tagDirection = PlayerDirection.downLeft;
+                playerMoving = true;
             }
             else if (Input.GetKey("s") && Input.GetKey("d"))
             {
                 playerT.Translate(new Vector3(0.75f, -0.75f, 0) * speed);
-                tagDirection = PlayerDirection.downRight;
+                playerMoving = true;
             }
             else if (Input.GetKey("w"))
             {
                 playerT.Translate(new Vector3(0, 1, 0) * speed);
-                tagDirection = PlayerDirection.up;
-                playerAnim.Play("tagUp");
+                playerMoving = true;
             }
             else if (Input.GetKey("d"))
             {
                 playerT.Translate(new Vector3(1, 0, 0) * speed);
-                tagDirection = PlayerDirection.right;
-                playerSprite.flipX = true;
-                playerAnim.Play("tagLeft");
+                playerMoving = true;
             }
             else if (Input.GetKey("s"))
             {
                 playerT.Translate(new Vector3(0, -1, 0) * speed);
-                tagDirection = PlayerDirection.down;
-                playerAnim.Play("tagDown");
+                playerMoving = true;
             }
             else if (Input.GetKey("a"))
             {
                 playerT.Translate(new Vector3(-1, 0, 0) * speed);
-                tagDirection = PlayerDirection.left;
-                playerSprite.flipX = false;
-                playerAnim.Play("tagLeft");
+                playerMoving = true;
+            }
+            else
+            {
+                playerMoving = false;
+            }
+
+            if(playerMoving)
+            {
+                if(tagDirection == PlayerDirection.up)
+                {
+                    playerAnim.Play("tagUp");
+                }
+                else if(tagDirection == PlayerDirection.right)
+                {
+                    playerSprite.flipX = true;
+                    playerAnim.Play("tagLeft");
+                }
+                else if(tagDirection == PlayerDirection.down)
+                {
+                    playerAnim.Play("tagDown");
+                }
+                else if(tagDirection == PlayerDirection.left)
+                {
+                    playerSprite.flipX = false;
+                    playerAnim.Play("tagLeft");
+                }
             }
             else
             {
@@ -92,21 +137,22 @@ public class PlayerController : MonoBehaviour
                 {
                     playerAnim.Play("tagIdleUp");
                 }
-                else if (tagDirection == PlayerDirection.left)
-                {
-                    playerSprite.flipX = false;
-                    playerAnim.Play("tagIdleLeft");
-                }
                 else if (tagDirection == PlayerDirection.right)
                 {
                     playerSprite.flipX = true;
                     playerAnim.Play("tagIdleLeft");
                 }
-                else
+                else if (tagDirection == PlayerDirection.down)
                 {
-                    playerAnim.Play("tagIdle");//this is idle for down
+                    playerAnim.Play("tagIdle");
+                }
+                else if (tagDirection == PlayerDirection.left)
+                {
+                    playerSprite.flipX = false;
+                    playerAnim.Play("tagIdleLeft");
                 }
             }
+
         }
     }
 
@@ -116,7 +162,24 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && FindObjectOfType<DialogueRunner>().isDialogueRunning != true)
         {
             playerEnabled = false;
-            playerAnim.Play("tagIdle");
+            if (tagDirection == PlayerDirection.up)
+            {
+                playerAnim.Play("tagIdleUp");
+            }
+            else if (tagDirection == PlayerDirection.left)
+            {
+                playerSprite.flipX = false;
+                playerAnim.Play("tagIdleLeft");
+            }
+            else if (tagDirection == PlayerDirection.right)
+            {
+                playerSprite.flipX = true;
+                playerAnim.Play("tagIdleLeft");
+            }
+            else
+            {
+                playerAnim.Play("tagIdle");//this is idle for down
+            }
             CheckForNearbyNPC();
         }
         if(FindObjectOfType<DialogueRunner>().isDialogueRunning != true)
