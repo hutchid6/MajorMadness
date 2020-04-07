@@ -13,9 +13,9 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer playerSprite;
     float speed = 0.15f;
     float interactionRadius = 2.0f;
-    bool playerEnabled = true;
+    public bool playerEnabled = true;
 
-    enum PlayerDirection
+    public enum PlayerDirection
     {
         up,
         upRight,
@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
         left,
         upLeft
     }
-    PlayerDirection tagDirection;
+    public PlayerDirection tagDirection;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -138,4 +138,5 @@ public class PlayerController : MonoBehaviour
             FindObjectOfType<DialogueRunner>().StartDialogue(target.talkToNode);
         }
     }
+
 }

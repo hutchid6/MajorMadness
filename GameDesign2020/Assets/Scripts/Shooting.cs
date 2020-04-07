@@ -6,6 +6,7 @@ public class Shooting : MonoBehaviour
 {
     private Vector3 mousePosition;
     private Vector2 direction;
+    PlayerController playerControl;
     Rigidbody2D rig;
 
     //Shooting Sound
@@ -26,13 +27,48 @@ public class Shooting : MonoBehaviour
     {
         //gets rigidbody
         rig = gameObject.GetComponent<Rigidbody2D>();
+        playerControl = GetComponent<PlayerController>();
     }
 
     void Update()
     {
         //gets mousepostition and direction relative to character
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        direction = (mousePosition - transform.position).normalized;
+        //mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+       // direction = (mousePosition - transform.position).normalized;
+
+        //these if else statements will make the player shoot in the direction he is facing
+        if (playerControl.tagDirection == PlayerController.PlayerDirection.up)
+        {
+            direction = new Vector3(0, 1, 0);
+        }
+        else if(playerControl.tagDirection == PlayerController.PlayerDirection.upRight)
+        {
+            direction = new Vector3(1, 1, 0);
+        }
+        else if (playerControl.tagDirection == PlayerController.PlayerDirection.right)
+        {
+            direction = new Vector3(1, 0, 0);
+        }
+        else if (playerControl.tagDirection == PlayerController.PlayerDirection.downRight)
+        {
+            direction = new Vector3(1, -1, 0);
+        }
+        else if (playerControl.tagDirection == PlayerController.PlayerDirection.down)
+        {
+            direction = new Vector3(0, -1, 0);
+        }
+        else if (playerControl.tagDirection == PlayerController.PlayerDirection.downLeft)
+        {
+            direction = new Vector3(-1, -1, 0);
+        }
+        else if (playerControl.tagDirection == PlayerController.PlayerDirection.left)
+        {
+            direction = new Vector3(-1, 0, 0);
+        }
+        else if (playerControl.tagDirection == PlayerController.PlayerDirection.upLeft)
+        {
+            direction = new Vector3(-1, 1, 0);
+        }
 
         if (Input.GetMouseButtonDown(0) && cooldown == 0)
         {
@@ -80,11 +116,25 @@ public class Shooting : MonoBehaviour
         Vector2 pos2D = new Vector2(x, y);
         Vector2 ShootPos = pos2D + (direction);
 
+        Vector3 velocity;
+
+        if (playerControl.tagDirection == PlayerController.PlayerDirection.upLeft ||
+            playerControl.tagDirection == PlayerController.PlayerDirection.upRight ||
+            playerControl.tagDirection == PlayerController.PlayerDirection.downLeft ||
+            playerControl.tagDirection == PlayerController.PlayerDirection.downRight)
+        {
+           velocity = new Vector3(15, 15, 0);
+        }
+        else
+        { 
+           velocity = new Vector3(20, 20, 0);
+        }
+
         //ShootPos += new Vector2(0, 1, 0);
         Rigidbody2D project = Instantiate(projectile, ShootPos, Quaternion.Euler(0, 0, 0));
         //GameObject traila = Instantiate(trail, ShootPos, Quaternion.Euler(80, 120, 0));
         //traila.transform.SetParent(project.transform);
-        project.velocity = transform.TransformDirection(direction * velocity1);
+        project.velocity = transform.TransformDirection(direction * velocity.magnitude);
         //AudioSource.PlayClipAtPoint(Shootsound, transform.position);
 
     }
